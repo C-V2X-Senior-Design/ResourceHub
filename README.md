@@ -10,6 +10,8 @@
 <p align="center">Julia Zeng</p>
 <p align="center">Yixiu Zhu</p>
 
+<br/>
+
 
 ## Navigation
 
@@ -27,10 +29,12 @@
       <a href="#current-status">Current Status</a>
     </li>
     <li>
-      <a href="#things-to-look-out-for">Things to look out for</a>
+      <a href="#potential-pitfalls">Potential Pitfalls</a>
     </li>
   </ol>
 </details>
+
+<br/>
 
 
 ## Project Overview
@@ -77,7 +81,7 @@ This is the overview
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
 
 
-## Things to look out for
+## Potential Pitfalls
 
 This is the overview
 
