@@ -74,7 +74,7 @@ Explanation of Hardware's Role in our Project.
         </tr>
         <tr>
             <td colspan="1" rowspan="1">
-                <p>1</p>
+                <p align=center>1</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>CDA 2990 8 Channel Clock Distribution Module</p>
@@ -83,18 +83,18 @@ Explanation of Hardware's Role in our Project.
                 <p>National Instruments</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>1</p>
+                <p align=center>1</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>2,866</p>
+                <p align=center>2,866</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>2,866</p>
+                <p align=center>2,866</p>
             </td>
         </tr>
         <tr>
             <td colspan="1" rowspan="1">
-                <p>2</p>
+                <p align=center>2</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>Desktop with Dragon OS</p>
@@ -103,18 +103,18 @@ Explanation of Hardware's Role in our Project.
                 <p>Dell</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>2</p>
+                <p align=center>2</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>Around 500</p>
+                <p align=center>Around 500</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>1,000</p>
+                <p align=center>1,000</p>
             </td>
         </tr>
         <tr>
             <td colspan="1" rowspan="1">
-                <p>3</p>
+                <p align=center>3</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>Keysight 33500B signal generator</p>
@@ -123,18 +123,18 @@ Explanation of Hardware's Role in our Project.
                 <p>Keysight Technologies</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>2</p>
+                <p align=center>2</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>1,979</p>
+                <p align=center>1,979</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>3,958</p>
+                <p align=center>3,958</p>
             </td>
         </tr>
         <tr>
             <td colspan="1" rowspan="1">
-                <p>4</p>
+                <p align=center>4</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>LeCroy Wavesurfer 422 Oscilloscope</p>
@@ -143,18 +143,18 @@ Explanation of Hardware's Role in our Project.
                 <p>Teledyne Lecroy</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>1</p>
+                <p align=center>1</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>5,141</p>
+                <p align=center>5,141</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>5,141</p>
+                <p align=center>5,141</p>
             </td>
         </tr>
         <tr>
             <td colspan="1" rowspan="1">
-                <p>5</p>
+                <p align=center>5</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>NI 2901 USRP (AFRL provided)</p>
@@ -163,13 +163,13 @@ Explanation of Hardware's Role in our Project.
                 <p>National Instruments</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>3</p>
+                <p align=center>3</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>2,010</p>
+                <p align=center>2,010</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>6,030</p>
+                <p align=center>6,030</p>
             </td>
         </tr>
         <tr>
@@ -177,7 +177,7 @@ Explanation of Hardware's Role in our Project.
                 <p>Total Cost</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>18,995</p>
+                <p align=center>18,995</p>
             </td>
         </tr>
     </tbody>
@@ -203,57 +203,57 @@ Explanation of Hardware's Role in our Project.
             </td>
         <tr>
             <td colspan="1" rowspan="1">
-                <p>1</p>
+                <p align=center>1</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>CDA 2990 8 Channel Clock Distribution Module</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p><a href="https://www.ni.com/pdf/dspdf/en/ds-572">link</a></p>
+                <p align=center><a href="https://www.ni.com/pdf/dspdf/en/ds-572">link</a></p>
             </td>
         </tr>
         <tr>
             <td colspan="1" rowspan="1">
-                <p>2</p>
+                <p align=center>2</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>Desktop with Dragon OS</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">N/A</a></p>
+                <p align=center>N/A<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">.</a></p>
             </td>
         </tr>
         <tr>
             <td colspan="1" rowspan="1">
-                <p>3</p>
+                <p align=center>3</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>Keysight 33500B signal generator</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p><a href="https://www.keysight.com/us/en/assets/7018-05928/data-sheets/5992-2572.pdf">link</a></p>
+                <p align=center><a href="https://www.keysight.com/us/en/assets/7018-05928/data-sheets/5992-2572.pdf">link</a></p>
             </td>
         </tr>
         <tr>
             <td colspan="1" rowspan="1">
-                <p>4</p>
+                <p align=center>4</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>LeCroy Wavesurfer 422 Oscilloscope</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p><a href="https://cdn.teledynelecroy.com/files/manuals/ws-om-e_rev_b.pdf">link</a></p>
+                <p align=center><a href="https://cdn.teledynelecroy.com/files/manuals/ws-om-e_rev_b.pdf">link</a></p>
             </td>
         </tr>
         <tr>
             <td colspan="1" rowspan="1">
-                <p>5</p>
+                <p align=center>5</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>NI 2901 USRP (AFRL provided)</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p><a href="https://www.ni.com/pdf/manuals/374925c.pdf">link</a></p>
+                <p align=center><a href="https://www.ni.com/pdf/manuals/374925c.pdf">link</a></p>
             </td>
         </tr>
     </tbody>
