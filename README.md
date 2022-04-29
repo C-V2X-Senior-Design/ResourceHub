@@ -47,7 +47,7 @@ The purpose of the C-V2X Misbehavior Detection System Project is to model Cellul
 To this end, we have used modified versions of the SrsRAN library as well as Fabian Eckerman's C-V2X Traffic Generator - the only readily available implementation of C-V2X on software-defined radios - to create a model of C-V2X traffic. We then used GNURadio and a modified version of a jammer provided by Worcester Polytechnic Institute in order to jam our C-V2X traffic. Finally, we created separate deep learning models to assess in-phase and quadrature data and resource block allocation data, which are two defining features of C-V2X traffic, in an effort to detect denial of service attacks.
 
 <br/>
-<p align="center"><img src="images/block_diagram.png" width=1000 height=600></p>
+<p align="center"><img src="images/block_diagram.png" width=1000 height=775></p>
 
 The above image is a block diagram identifying the individual components of the C-V2X Misbehavior Detection System. The Frequency Spectrum block outlines the hardware setup; Digital Signal Processing is performed by SrsRAN, the C-V2X Traffic Generator, and GNURadio; and the final two blocks encapsulate data collection and machine learning for denial of service attack detection.
 
