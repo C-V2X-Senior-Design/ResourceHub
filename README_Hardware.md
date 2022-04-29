@@ -34,7 +34,7 @@
 
 ## Overview
 
-Explanation of Hardware's Role in our Project.
+[@Max Explanation of Hardware's Role in our Project]
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
@@ -265,7 +265,7 @@ Explanation of Hardware's Role in our Project.
 
 ## Lab Setup
 
-[Images of Lab Setup]
+[Images of the Lab Setup]
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
