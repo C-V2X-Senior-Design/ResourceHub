@@ -30,7 +30,7 @@
       <a href="#gnuradio-rx-jammer">GNURadio RX Jammer</a>
     </li>
     <li>
-      <a href="#machine-learning-via-iq_data">Machine Learning via IQ Data</a>
+      <a href="#machine-learning-via-iq-data">Machine Learning via IQ Data</a>
     </li>
     <li>
       <a href="#modsrsran">ModSrsRAN</a>
