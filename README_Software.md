@@ -180,7 +180,28 @@ After adjusting gain and squelch in order to remove most noise, we collected dat
 
 ## Machine Learning via IQ Data
 
-[@Yixiu]
+Deep learning models have a better model architecture compared to other approaches (E.g. our simple CNN with Q-learning integrated.), so it can utilize our limited computing resources much more efficiently. Furthermore, deep learning models have a huge number of learnable weights and possibly can outperform other potential approaches. 
+
+Here is a completely new approach of making threel trials based on a graduate team’s research in Noiselab UCSD. Those trial models are separately listed below for parts worth mentioning:
+
+Robust CNN (Convolutional Neural Network)
+– This model provides 87% of accuracy 
+ResNet (Residual Network)
+– Currently looks good, but not sure if this model will still be suitable if the model is applied on another dataset. 
+– This model provides 81% of accuracy
+CLDNN (Convolutional Long Short Term Deep Neural Network)
+– I have additionally  implemented a Pickle data loading technique
+– Am trying to load with a preprocessed dataset to make the model more responsive
+– This model provides 84% of accuracy
+The figure below will show the architecture of Robust CNN Method(which currently outputs the highest accuracy.)
+
+![example](./images/Architecture (1).PNG)
+
+Here are also some result plots collected:
+
+![example](./images/accuracy.PNG)
+![example](./images/Loss.PNG)
+
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
