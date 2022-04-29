@@ -118,15 +118,15 @@ The following modifications were made to the jammer code:
 ## Receiver
 
 Our receiver code for data collection and visualization was written in gnuradio:
-![Alt Text](img/receiver_blocks.png)
+![Alt Text](https://github.com/C-V2X-Senior-Design/gnuradioRX-Jamming/blob/main/img/receiver_blocks.png?raw=true)
 
 After adjusting gain and squelch in order to remove most noise, we collected data for the following scenarios:
 
-![Alt Text](img/cv2x_transmit.gif)*Our receiver capturing an OTA `cv2x_traffic_generator` c-v2x traffic signal*
+![Alt Text](https://github.com/C-V2X-Senior-Design/gnuradioRX-Jamming/blob/main/img/cv2x_transmit.gif?raw=true)*Our receiver capturing an OTA `cv2x_traffic_generator` c-v2x traffic signal*
 
-![Alt Text](img/jammer_transmit.gif)*Our receiver capturing the OTA `./top_block.py` jammer signal*
+![Alt Text](https://github.com/C-V2X-Senior-Design/gnuradioRX-Jamming/blob/main/img/jammer_transmit.gif?raw=true)*Our receiver capturing the OTA `./top_block.py` jammer signal*
 
-![Alt Text](img/jammed_cv2x.gif)*Jammed c-v2x traffic*
+![Alt Text](https://github.com/C-V2X-Senior-Design/gnuradioRX-Jamming/blob/main/img/jammed_cv2x.gif?raw=true)*Jammed c-v2x traffic*
 
 
 <br/>
