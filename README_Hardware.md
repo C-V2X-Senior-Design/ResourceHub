@@ -53,6 +53,23 @@
                 <p>1</p>
             </td>
             <td colspan="1" rowspan="1">
+                <p>CDA 2990 8 Channel Clock Distribution Module</p>
+            </td>
+            <td colspan="1" rowspan="1">
+                <p>1</p>
+            </td>
+            <td colspan="1" rowspan="1">
+                <p>2,866</p>
+            </td>
+            <td colspan="1" rowspan="1">
+                <p>2,866</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1" rowspan="1">
+                <p>2</p>
+            </td>
+            <td colspan="1" rowspan="1">
                 <p>Desktop with Dragon OS</p>
             </td>
             <td colspan="1" rowspan="1">
@@ -67,33 +84,16 @@
         </tr>
         <tr>
             <td colspan="1" rowspan="1">
-                <p>2</p>
-            </td>
-            <td colspan="1" rowspan="1">
-                <p>NI 2901 USRPs (AFRL provided)</p>
-            </td>
-            <td colspan="1" rowspan="1">
                 <p>3</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>2010</p>
-            </td>
-            <td colspan="1" rowspan="1">
-                <p>6,030</p>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="1" rowspan="1">
-                <p>3</p>
-            </td>
-            <td colspan="1" rowspan="1">
-                <p>Keysight 33500B signal generators</p>
+                <p>Keysight 33500B signal generator</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>2</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>1979</p>
+                <p>1,979</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>3,958</p>
@@ -110,10 +110,27 @@
                 <p>1</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>5141</p>
+                <p>5,141</p>
             </td>
             <td colspan="1" rowspan="1">
                 <p>5,141</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1" rowspan="1">
+                <p>5</p>
+            </td>
+            <td colspan="1" rowspan="1">
+                <p>NI 2901 USRP (AFRL provided)</p>
+            </td>
+            <td colspan="1" rowspan="1">
+                <p>3</p>
+            </td>
+            <td colspan="1" rowspan="1">
+                <p>2,010</p>
+            </td>
+            <td colspan="1" rowspan="1">
+                <p>6,030</p>
             </td>
         </tr>
         <tr>
@@ -121,7 +138,7 @@
                 <p>Total Cost</p>
             </td>
             <td colspan="1" rowspan="1">
-                <p>16,129</p>
+                <p>18,995</p>
             </td>
         </tr>
     </tbody>
