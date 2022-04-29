@@ -136,7 +136,8 @@ We used Fabian Eckermann's [`cv2x-traffic-generator`](https://github.com/FabianE
 [1] F. Eckermann, C. Wietfeld, *SDR-based open-source C-V2X traffic generator for stress testing vehicular communication*, In 2021 IEEE 93rd Vehicular Technology Conference (VTC-Spring), Helsinki, Finland, April 2021.
 
 Additional reference(s):
-[2] Twardokus, Geoff, "Intelligent Lower-Layer Denial-of-Service Attacks Against Cellular Vehicle-to- Everything" (2021). Thesis. Rochester Institute of Technology.
+  
+  [2] Twardokus, Geoff, "Intelligent Lower-Layer Denial-of-Service Attacks Against Cellular Vehicle-to- Everything" (2021). Thesis. Rochester Institute of Technology.
 
 #### Installation and Build 
 * Setup the USRP equipment following the <a href="https://github.com/C-V2X-Senior-Design/ResourceHub/blob/main/README_Hardware.md">Lab Setup</a>.
@@ -181,28 +182,27 @@ No packets were passing the `srslte_pssch_decode` in `pssch_ue.c`, i.e. `num_dec
  
 #### Issue No.2
 This is not an issue, but instructions on how to populate the transport block (payload) in C-V2X traffic generator.
-    - In the original fork, C-V2X does not populate the `tb`[] array, possibly because it is only used for stress-testing of SCI. 
-    - Edit tb to populate the array with up to `SRSLTE_SL_SCH_MAX_TB_LEN` bits. 
-    - e.g.: `cv2x_traffic_generator.c`:426 populates `tb` with all 1s. 
+  - In the original fork, C-V2X does not populate the `tb` array, possibly because it is only used for stress-testing of SCI. 
+  - Edit `tb` to populate the array with up to `SRSLTE_SL_SCH_MAX_TB_LEN` bits. 
+  - e.g.: `cv2x_traffic_generator.c`:426 populates `tb` with all 1s. 
 
 
 #### Issue No.3
 (Cross-documented with <a href="https://github.com/C-V2X-Senior-Design/modSrsRAN">modSrsRan</a>)
   - This is not an issue, but rather an explanation for why we do not need to
 account for the non-adjacent C-V2X subchannelization scheme, just the adjacent scheme.
-Refer to Fabian Eckermann's paper *SDR-based Open-Source C-V2X Traffic Generator for Stress 
-Testing Vehicular Communication* for explanation of C-V2X subchannelization schemes. 
+Refer to [1] for explanation of C-V2X subchannelization schemes. 
 
   - `cv2x-traffic-generator-fork/lib/src/phy/common/phy_common_sl.c`:407 defines `* @param adjacency_pscch_pssch subchannelization adjacency`
   - `cv2x_traffic_generator.c`:372 calls `srslte_sl_comm_resource_pool_set_cfg()` which is hardcoded to set `adjacency_pscch_pssch=true`.
   - Why I think true=adjacent and false=non-adjacent lies in `cv2x-traffic-generator-fork/lib/src/phy/ue/ue_sl.c`:658
-  ``` 
-  if (q->sl_comm_resource_pool.adjacency_pscch_pssch) {
-    pscch_prb_start_idx = sub_channel_idx * q->sl_comm_resource_pool.size_sub_channel; 
-  } else {
-    pscch_prb_start_idx = sub_channel_idx * 2;
-  }
-  ```
+      ``` 
+      if (q->sl_comm_resource_pool.adjacency_pscch_pssch) {
+        pscch_prb_start_idx = sub_channel_idx * q->sl_comm_resource_pool.size_sub_channel; 
+      } else {
+        pscch_prb_start_idx = sub_channel_idx * 2;
+      }
+      ```
   - If adjacency_pscch_pssch=true, then pssch starting block will be a multiple of the subchannel size, 
   else it is a multiple of 2. 
   - `modSrsRAN/lib/src/phy/common/phy_common_sl.c`:`srsran_sl_comm_resource_pool_get_default_config`:346, which is called in pssch_ue, hardcodes `adjacency_pscch_pssch=true`.
