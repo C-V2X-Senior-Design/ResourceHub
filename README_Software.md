@@ -30,6 +30,9 @@
       <a href="#gnuradio-rx-jammer">GNURadio RX Jammer</a>
     </li>
     <li>
+      <a href="#machine-learning-via-iq_data">Machine Learning via IQ Data</a>
+    </li>
+    <li>
       <a href="#modsrsran">ModSrsRAN</a>
     </li>
   </ol>
@@ -109,13 +112,13 @@ YaYa Brown and Cynthia Teng's paper (which links to jammer) is available [here](
 
 *Brown, YaYa Mao, and Cynthia Teng. *Lte Frequency Hopping Jammer.* : Worcester Polytechnic Institute, 2019.
 
-## Jammer Modifications
+### Jammer Modifications
 
 The following modifications were made to the jammer code:
 * `random.randrange(2.6775e9,2.6825e9,1e3))` changed to `random.randrange(5.9165e9,5.917e9,1e3)` (center frequency)
 * `time.sleep(1.0 / (40))` changed to `time.sleep(1.0)` (duration between jamming frequency hopping)
 
-## Receiver
+### Receiver
 
 Our receiver code for data collection and visualization was written in gnuradio:
 ![Alt Text](https://github.com/C-V2X-Senior-Design/gnuradioRX-Jamming/blob/main/img/receiver_blocks.png?raw=true)
@@ -128,6 +131,15 @@ After adjusting gain and squelch in order to remove most noise, we collected dat
 
 ![Alt Text](https://github.com/C-V2X-Senior-Design/gnuradioRX-Jamming/blob/main/img/jammed_cv2x.gif?raw=true)*Jammed c-v2x traffic*
 
+
+<br/>
+<p align="center">(<a href="#navigation">to table of contents</a>)</p>
+
+
+
+## Machine Learning via IQ Data
+
+[@Yixiu]
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
