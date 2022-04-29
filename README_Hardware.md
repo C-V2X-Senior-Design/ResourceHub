@@ -14,6 +14,9 @@
     <li>
       <a href="#software-report">Title</a>
     </li>
+    <li>
+      <a href="#bill-of-materials">Bill Of Materials</a>
+    </li>
   </ol>
 </details>
 
