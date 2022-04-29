@@ -195,13 +195,11 @@ CLDNN (Convolutional Long Short Term Deep Neural Network)
 – This model provides 84% of accuracy
 The figure below will show the architecture of Robust CNN Method(which currently outputs the highest accuracy.)
 
-![example](./images/Architecture (1).PNG)
+![Alt Text](https://github.com/C-V2X-Senior-Design/ResourceHub/blob/main/images/Architecture%20(1).PNG?raw=true)
 
 Here are also some result plots collected:
-
-![example](./images/accuracy.PNG)
-![example](./images/Loss.PNG)
-
+![Alt Text](https://github.com/C-V2X-Senior-Design/ResourceHub/blob/main/images/accuracy.png?raw=true)
+![Alt Text](https://github.com/C-V2X-Senior-Design/ResourceHub/blob/main/images/Loss.png?raw=true)
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
