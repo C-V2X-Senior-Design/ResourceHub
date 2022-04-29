@@ -40,7 +40,7 @@
 
 ## Overview
 
-[Describe Role of Software in Project]
+The software in this was primarily used in three sections: the normal transmission and reception of radio signals, the jamming of the aforementioned signal, and the machine learning models. ModSrsRAN was used as a baseline to automate building and configuration, along with some added code for data extraction. It also served as a starting point for general LTE signal over the air transmission. Later, we mainly used C-V2X Traffic Generator, a more specialized library created by Fabian Eckerman with proper V2X signal implementation. To create the jammer, We built off of the LTE jammer from two graduate students at WPI, making it a a midband jammer with a slower hop speed, thorugh direct modification of Python blocks generated from GNURadio. Last but not least are the two machine learning repositories. The Machine Learning Yixiu repository focused on using IQ or interphase/quadrature data of each received segment of signal to differentiate between valid and jammed messages. The C-V2X Machine Learning repository also looked to classify a V2X packet as jammed or clear, but through the use of resource blocks, a method of sending messages used by LTE based protocols that breaks the overall packet into smaller sections. Each repository had a unique role to fulfill, from the creation of the signal itself, to data extraction and algorithmic analysis of the data.
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
