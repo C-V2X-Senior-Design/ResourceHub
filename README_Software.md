@@ -154,7 +154,7 @@ Additional reference(s):
 * Each row is formatted by {`subframe, timestamp (ms), resource_blocks`} and `resource_block` is a bitmap repesenting the resource block allocation for a single transmission. The resource block allocation is manufactured by an algorithm that derives from the paper [1]. 
 * Each bit of the bitmap represents a resource block group (RBG) of the resource pool. 1 indicates that the RBG is used, 0 unused. E.g. if there are 5 sub-channels and each sub-channel is of length 10, the bitmap will have a length of 50. 
 * The bitmap abides by the adjacent subchannelization scheme (rationale provided [Issue No.3](#issue-no.3)), and contiguous allocation, as is standardardized in SCI Format 1 [1]. 
-* `subframe` indicates the subframe index. A frame contains 10 subframes and indices repeat each frame, e.g. `0, 1, ..., 9, 0, 1, 2, ...`. [2]
+* `subframe` indicates the subframe index. A frame contains 10 subframes and indices repeat each frame, e.g. `0, 1,..., 9, 0, 1, 2,...`. [2]
 * `timestamp` indicates the time of packet reception. 
 * Important: The output does not indicate successful decode of transport blocks, as will be explained in the next section.   
 
@@ -165,18 +165,18 @@ Additional reference(s):
     * No packets were passing the srslte_pssch_decode in pssch_ue.c, i.e. num_decoded_tb always equaled 0, and therefore no PCAPs were generated.
 
 
-    * **Problemtatic filename:function:linenum**
+    * Problemtatic filename:function:linenum
         - /lib/src/phy/phch/pssch.c:srslte_pssch_decode:464
         - /lib/src/phy/phch/pssch.c:srslte_pssch_decode:487
 
-    * **What is the issue in that line?**
+    * The Issue
     * - It is not passing the checksum, i.e. srslte_bit_diff(), which essentially checks that every bit is the same and as a result an error is returned    to pssch_ue indicating the packet cannot be decoded. 
     
-    * **How to recreate the error?**
+    * How to recreate the error
         - Add ERROR("Checksum error") error printing statements to those two places
         - Run pssch_ue.c. You should now see those "Checksum error" error messages printed to the console
     
-    * **How I "solved" this issue?**
+    * How I "solved" this issue
         - Commented out CRC in /lib/src/phy/phch/pssch.c:srslte_pssch_decode:464 and /lib/src/phy/phch/pssch.c:srslte_pssch_decode:487
         - Now, pssch_ue will generate PCAPs in tmp/pssch.pcap, but this is garbage
  
