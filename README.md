@@ -26,6 +26,9 @@
       <a href="#project-overview">Project Overview</a>
     </li>
     <li>
+      <a href="#repositories">Repositories</a>
+    </li>
+    <li>
       <a href="#current-status">Current Status</a>
     </li>
     <li>
