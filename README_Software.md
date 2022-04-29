@@ -184,15 +184,15 @@ Deep learning models have a better model architecture compared to other approach
 
 Here is a completely new approach of making threel trials based on a graduate team’s research in Noiselab UCSD. Those trial models are separately listed below for parts worth mentioning:
 
-Robust CNN (Convolutional Neural Network)
-– This model provides 87% of accuracy 
-ResNet (Residual Network)
-– Currently looks good, but not sure if this model will still be suitable if the model is applied on another dataset. 
-– This model provides 81% of accuracy
-CLDNN (Convolutional Long Short Term Deep Neural Network)
-– I have additionally  implemented a Pickle data loading technique
-– Am trying to load with a preprocessed dataset to make the model more responsive
-– This model provides 84% of accuracy
+* Robust CNN (Convolutional Neural Network)
+  * – This model provides 87% of accuracy 
+* ResNet (Residual Network)
+  * – Currently looks good, but not sure if this model will still be suitable if the model is applied on another dataset. 
+  * – This model provides 81% of accuracy
+* CLDNN (Convolutional Long Short Term Deep Neural Network)
+  * – I have additionally  implemented a Pickle data loading technique
+  * – Am trying to load with a preprocessed dataset to make the model more responsive
+  * – This model provides 84% of accuracy
 The figure below will show the architecture of Robust CNN Method(which currently outputs the highest accuracy.)
 
 ![Alt Text](https://github.com/C-V2X-Senior-Design/ResourceHub/blob/main/images/Architecture%20(1).PNG?raw=true)
