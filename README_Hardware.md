@@ -34,7 +34,7 @@
 
 ## Overview
 
-[@Max Explanation of Hardware's Role in our Project]
+Hardware sat at the heart of this project, as all the data created had to be analog. The three National Instruments software defined radios, or SDRs read in C code to trahslate function calls into configurations for the radio, such as the gain, FFT size, and frequency to broadcast at, among other capabilities. These served as the transmitter, reciever, and jammer for our mockup. To support and program these, we had two desktops with Dragon OS. This allowed us to not just have a consistant station to program the radios, but monitoring software such as GQRX to confirm signal stability and strength. The two Keysight signal generators made sure the radios had a precise pulse per second, or PPS for timekeeping, as well as a 10 MHz reference waveform to function as the clock for our V2X signal. The oscilloscope from LeCroy gave us the capibility to confirm the accuracy of the signals. Finally, the CDA 8 Channel Clock Distribution Module, or Octoclock for short, was later used for a more unified apporach for a GPS sync between the radios. Overall, each of these products were vital to delivering data over the air between radios.
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
@@ -262,10 +262,29 @@
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
 
-
+                                        
 ## Lab Setup
 
-[Images of the Lab Setup]
+![LabSetup](./images/Labsetup.png)
+
+Above are the devices described in the overview. Two desktops, with the one on the left behind the monitor. The two signal generators are located in the middle, with one SDR on top. The other two radios are stacked on top of one another on the right desktop. Finally, the Oscilloscope is behind the left monitor.
+
+### Setup Procedure
+                                        
+Perform the following steps to set up USRPs for communication
+                                        
+* Connect each USRP to separate power sources and computers.
+  * You can ensure these USRPs have been properly connected and are visible to the computer by running  `uhd_find_devices` on the command-line of the connected PC.
+* Connect each USRP to one of the following:
+  * Two signal generators connected to the same relative inputs on each USRP with the following settings:
+    * A “Pulse, Off, 50 Ohm” wave which is “AM modulated by sine”, frequency of 1 Hertz, amplitude of 10 dBm
+    * A “Square, Off, 50 Ohm” wave which is “AM modulated by sine”, frequency of 10 Megahertz, amplitude of 100 millivolts (this should probably be 10 dBm)
+  * The GPS output of the 8 channel clock distribution module
+* Enable communication between USRPs by doing one of the following:
+  * Attaching antennae to the transmit and receive inputs of each USRP
+  * Connect the transmit input of each USRP to the receive inputs of all other USRPs via cable, using wire splitters if necessary
+                                        
+Now, use software such as GQRX and SrsRAN to confirm that your radios are communicating.
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>

@@ -43,7 +43,7 @@
 
 ## Overview
 
-[Describe Role of Software in Project]
+The software in this was primarily used in three sections: the normal transmission and reception of radio signals, the jamming of the aforementioned signal, and the machine learning models. ModSrsRAN was used as a baseline to automate building and configuration, along with some added code for data extraction. It also served as a starting point for general LTE signal over the air transmission. Later, we mainly used C-V2X Traffic Generator, a more specialized library created by Fabian Eckerman with proper V2X signal implementation. To create the jammer, We built off of the LTE jammer from two graduate students at WPI, making it a a midband jammer with a slower hop speed, thorugh direct modification of Python blocks generated from GNURadio. Last but not least are the two machine learning repositories. The Machine Learning Yixiu repository focused on using IQ or interphase/quadrature data of each received segment of signal to differentiate between valid and jammed messages. The C-V2X Machine Learning repository also looked to classify a V2X packet as jammed or clear, but through the use of resource blocks, a method of sending messages used by LTE based protocols that breaks the overall packet into smaller sections. Each repository had a unique role to fulfill, from the creation of the signal itself, to data extraction and algorithmic analysis of the data.
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
@@ -160,7 +160,7 @@ Additional reference(s):
 * Important: The output does not indicate successful decode of transport blocks, as will be explained in the next section.   
 
 
-## Changelog
+### Changelog
 
 #### Issue No.1
 No packets were passing the `srslte_pssch_decode` in `pssch_ue.c`, i.e. `num_decoded_tb` always equaled 0, and therefore no PCAPs were generated.
@@ -214,8 +214,6 @@ Refer to [1] for explanation of C-V2X subchannelization schemes.
 
 ## GNURadio RX Jammer
 
-[@Sam and @Max here]
-
 The jammer we are using is a modified version of one written by YaYa Brown and Cynthia Teng of Worcester Polytechnic Institute. This jammer does not work with the latest version of gnuradio due to the `ofdm mod` block being phased out. The workaround to this was to use a docker image provided by our graduate student advisor and client, Stefan Gvozdenovic, which uses gnuradio version 3.7.11. The docker image is available [here](https://github.com/gefa/cv2x-docker-grc3.7).
 
 YaYa Brown and Cynthia Teng's paper (which links to jammer) is available [here](https://digital.wpi.edu/concern/student_works/hm50tv580?locale=en) and the citation for their work is the following:
@@ -249,7 +247,27 @@ After adjusting gain and squelch in order to remove most noise, we collected dat
 
 ## Machine Learning via IQ Data
 
-[@Yixiu]
+Deep learning models have a better model architecture compared to other approaches (E.g. our simple CNN with Q-learning integrated.), so it can utilize our limited computing resources much more efficiently. Furthermore, deep learning models have a huge number of learnable weights and possibly can outperform other potential approaches. 
+
+Here is a completely new approach of making threel trials based on a graduate team’s research in Noiselab UCSD. Those trial models are separately listed below for parts worth mentioning:
+
+* Robust CNN (Convolutional Neural Network)
+  * – This model provides 87% of accuracy 
+* ResNet (Residual Network)
+  * – Currently looks good, but not sure if this model will still be suitable if the model is applied on another dataset. 
+  * – This model provides 81% of accuracy
+* CLDNN (Convolutional Long Short Term Deep Neural Network)
+  * – I have additionally  implemented a Pickle data loading technique
+  * – Am trying to load with a preprocessed dataset to make the model more responsive
+  * – This model provides 84% of accuracy
+
+The figure below will show the architecture of Robust CNN Method(which currently outputs the highest accuracy.)
+
+![Alt Text](https://github.com/C-V2X-Senior-Design/ResourceHub/blob/main/images/Architecture%20(1).PNG?raw=true)
+
+Here are also some result plots collected:
+![Alt Text](https://github.com/C-V2X-Senior-Design/ResourceHub/blob/main/images/accuracy.png?raw=true)
+![Alt Text](https://github.com/C-V2X-Senior-Design/ResourceHub/blob/main/images/Loss.png?raw=true)
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
