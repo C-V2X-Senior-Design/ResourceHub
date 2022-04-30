@@ -259,12 +259,6 @@ After adjusting gain and squelch in order to remove most noise, we collected dat
 
 We used Software Radio System's (SRS) [`srsRAN`](https://github.com/srsran/srsRAN) suite in order to implement an end-to-end LTE network and extract IQ data.
 
-#### Installation and Build 
-* text
-
-#### Interpretation of <ins>logfile</ins> output 
-* text
-
 ## Changelog
 
 #### Issue No.1
