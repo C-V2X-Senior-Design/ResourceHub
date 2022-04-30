@@ -262,15 +262,29 @@ Hardware sat at the heart of this project, as all the data created had to be ana
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
 
-<center>
-
+                                        
 ## Lab Setup
 
 ![LabSetup](./images/Labsetup.png)
 
 Above are the devices described in the overview. Two desktops, with the one on the left behind the monitor. The two signal generators are located in the middle, with one SDR on top. The other two radios are stacked on top of one another on the right desktop. Finally, the Oscilloscope is behind the left monitor.
-</center>
 
+### Setup Procedure
+                                        
+Perform the following steps to set up USRPs for communication
+                                        
+* Connect each USRP to separate power sources and computers.
+  * You can ensure these USRPs have been properly connected and are visible to the computer by running  `uhd_find_devices` on the command-line of the connected PC.
+* Connect each USRP to one of the following:
+  * Two signal generators connected to the same relative inputs on each USRP with the following settings:
+    * A “Pulse, Off, 50 Ohm” wave which is “AM modulated by sine”, frequency of 1 Hertz, amplitude of 10 dBm
+    * A “Square, Off, 50 Ohm” wave which is “AM modulated by sine”, frequency of 10 Megahertz, amplitude of 100 millivolts (this should probably be 10 dBm)
+  * The GPS output of the 8 channel clock distribution module
+* Enable communication between USRPs by doing one of the following:
+  * Attaching antennae to the transmit and receive inputs of each USRP
+  * Connect the transmit input of each USRP to the receive inputs of all other USRPs via cable, using wire splitters if necessary
+                                        
+Now, use software such as GQRX and SrsRAN to confirm that your radios are communicating.
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
