@@ -255,9 +255,54 @@ After adjusting gain and squelch in order to remove most noise, we collected dat
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
 
 
-## ModSrsRAN
+## ModSrsRAN ([Changelog](#changelog-1))
 
-[@Julia and @Michael here]
+We used Software Radio System's (SRS) [`srsRAN`](https://github.com/srsran/srsRAN) suite in order to implement an end-to-end LTE network and extract IQ data.
+
+#### Installation and Build 
+* text
+
+#### Interpretation of <ins>logfile</ins> output 
+* text
+
+## Changelog
+
+#### Issue No.1
+The srsRAN release 21.10 implementation of pssch_ue.c (found in `modSrsRan/build/lib/examples`) was giving a floating point exception error (GitHub issue in srsRAN open source found here: srsran/srsRAN#838).
+
+  1. Problemtatic filename:function:linenum
+      - `/lib/src/phy/sync/sync.c:srsran_sync_set_cp`:446
+      - Change:
+        ```
+        q->nof_symbols = q->frame_size / (q->fft_size + q->cp_len) - 1; // ADDED COMMENT: FLOATING POINT EXCEPTION HAPPENING HERE
+        ```
+
+  2. The Issue
+      - Both `q->fft_size` and `q->cp_len` are 0 which result in a divide by 0 error.
+      
+  3. How to recreate the error and debug it
+      - Revert to commit 86a094c98e77b32ed0a1edcb053dabbed4b3c48d
+      - Add -g flag to cmake line in maker.sh to enable debugging
+      - Run: ./maker.sh
+      - Navigate to pssch_ue executable: cd /build/lib/examples
+      - Run gdb: gdb ./pssch_ue
+      - Add breakpoints:
+        1. b main
+        2. b ue_sync.c:srsran_ue_sync_set_cell
+        3. b sync.c:srsran_sync_set_cp
+      - Step with 'continue' (c) until you hit error and you should see that you hit the error in sync.c:srsran_sync_set_cp:446
+      - Revert back to this commit (which includes debugging print statements) and run the previous steps if you'd like
+
+    
+  4. How I "solved" this issue
+      - srsran_sync_set_cp is called twice in ue_sync.c:srsran_ue_sync_set_cell:347 and ue_sync.c:srsran_ue_sync_set_cell:350, so I commented them out. Run now, floating point exception should disappear.
+      - Another "solution" is to set the `FFT` and `CP_LEN` values to something non-zero, to do this uncomment lines `ue_sync.c`:`srsran_ue_sync_set_cell`:346 and `ue_sync.c`:`srsran_ue_sync_set_cell`:349. 
+
+ 
+#### Issue No.2
+
+#### Issue No.3
+
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
