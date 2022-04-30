@@ -160,7 +160,7 @@ Additional reference(s):
 * Important: The output does not indicate successful decode of transport blocks, as will be explained in the next section.   
 
 
-## Changelog
+### Changelog
 
 #### Issue No.1
 No packets were passing the `srslte_pssch_decode` in `pssch_ue.c`, i.e. `num_decoded_tb` always equaled 0, and therefore no PCAPs were generated.
@@ -213,8 +213,6 @@ Refer to [1] for explanation of C-V2X subchannelization schemes.
 
 
 ## GNURadio RX Jammer
-
-[@Sam and @Max here]
 
 The jammer we are using is a modified version of one written by YaYa Brown and Cynthia Teng of Worcester Polytechnic Institute. This jammer does not work with the latest version of gnuradio due to the `ofdm mod` block being phased out. The workaround to this was to use a docker image provided by our graduate student advisor and client, Stefan Gvozdenovic, which uses gnuradio version 3.7.11. The docker image is available [here](https://github.com/gefa/cv2x-docker-grc3.7).
 
@@ -277,9 +275,7 @@ Here are also some result plots collected:
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
 
 
-## ModSrsRAN
-
-[@Julia and @Michael here]
+## ModSrsRAN 
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
