@@ -273,67 +273,99 @@ Here are also some result plots collected:
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
 
 
-## ModSrsRAN ([Changelog](#changelog-1))
+## ModSrsRAN
 
-We used Software Radio System's (SRS) [`srsRAN`](https://github.com/srsran/srsRAN) suite in order to implement an end-to-end LTE network and extract IQ data.
+ModSrsRAN is a fork of the [SrsRAN](https://github.com/srsran/srsRAN) library modified for ease of rebuilding, execution, and data extraction. This repository does not explicitly instantiate the C-V2X protocol, but does allow for the execution of user-end to base station LTE traphic. SrsRAN is also capable of receiving and decoding C-V2X traphic via its built-in sideling channel receiver.
 
-## Changelog
+A comprehensive changelog of all edits made to the base SrsRAN code can be found [here](https://github.com/C-V2X-Senior-Design/modSrsRAN/blob/add_probes/changelog_team13.md).
 
-#### Issue No.1
-The srsRAN release 21.10 implementation of pssch_ue.c (found in `modSrsRan/build/lib/examples`) was giving a floating point exception error (GitHub issue in srsRAN open source found here: srsran/srsRAN#838).
+### Building & Installation
 
-  1. Problemtatic filename:function:linenum
-      - `/lib/src/phy/sync/sync.c:srsran_sync_set_cp`:446
-      - Change:
-        ```
-        q->nof_symbols = q->frame_size / (q->fft_size + q->cp_len) - 1; // ADDED COMMENT: FLOATING POINT EXCEPTION HAPPENING HERE
-        ```
+In order to build this library on a new machine, change the following lines in `CMakeLists.txt` from ""OFF" to "ON":
 
-  2. The Issue
-      - Both `q->fft_size` and `q->cp_len` are 0 which result in a divide by 0 error.
-      
-  3. How to recreate the error and debug it
-      - Revert to commit `86a094c98e77b32ed0a1edcb053dabbed4b3c48d`
-      - Add `-g` flag to cmake line in maker.sh to enable debugging
-      - Run: `./maker.sh`
-      - Navigate to pssch_ue executable: `cd /build/lib/examples`
-      - Run gdb: `gdb ./pssch_ue`
-      - Add breakpoints:
-        1. b main
-        2. b ue_sync.c:srsran_ue_sync_set_cell
-        3. b sync.c:srsran_sync_set_cp
-      - Step with 'continue' (c) until you hit error and you should see that you hit the error in `sync.c`:`srsran_sync_set_cp`:446
-      - Revert back to this commit (which includes debugging print statements) and run the previous steps if you'd like
+```
+option(ENABLE_SRSUE          "Build srsUE application"                  OFF)
+option(ENABLE_SRSUE          "Build srsUE application"                  OFF)
+option(ENABLE_BLADERF        "Enable BladeRF"                           OFF)
+option(ENABLE_SOAPYSDR       "Enable SoapySDR"                          OFF)
+option(ENABLE_SKIQ           "Enable Sidekiq SDK"                       OFF)
+```
 
-    
-  4. How I "solved" this issue
-      - `srsran_sync_set_cp` is called twice in `ue_sync.c`:`srsran_ue_sync_set_cell`:347 and `ue_sync.c`:`srsran_ue_sync_set_cell`:350, so I commented them out. Run now, floating point exception should disappear.
-      - Another "solution" is to set the `FFT` and `CP_LEN` values to something non-zero, to do this uncomment lines `ue_sync.c`:`srsran_ue_sync_set_cell`:346 and `ue_sync.c`:`srsran_ue_sync_set_cell`:349. 
+Then, run `./maker.sh` on the command line to build ModSrsRAN.
 
- 
-#### Issue No.2
-No packets were passing the `srsran_pssch_decode()` in `pssch_ue.c`, i.e. `num_decoded_tb` always equaled 0, and therefore no PCAPs were generated.
+If you have also set up your hardware as outlined [here](https://github.com/C-V2X-Senior-Design/ResourceHub/blob/main/README_Hardware.md#setup-procedure), you should now be able to run native SrsRAN binaries like `srsue` (user end) and `srsenb` (base station) to intiate inter-radio communication.
 
-  1. Problemtatic filename:function:linenum
-      - `/lib/src/phy/phch/pssch.c:srsran_pssch_decode`:465
-      - `/lib/src/phy/phch/pssch.c:srsran_pssch_decode`:487
+### Data Collection
 
-  2. The Issue
-      - It is not passing the checksum, i.e. `srsran_bit_diff()`, which essentially checks that every bit is the same and as a result an error is returned to `pssch_ue` indicating the packet cannot be decoded.
-      
-  3. How to recreate the error and debug it
-      - Add `ERROR("Checksum error")` error printing statements to those two places
-      - Run `pssch_ue.c`. You should now see`Checksum error` error messages printed to the console
+The ModSrsRAN codebase has a number of functions which print I/Q data and resource block allocation data of executed communications to files for storage and ispection. These function definitions are located [here](https://github.com/C-V2X-Senior-Design/modSrsRAN/blob/master/srsenb/src/phy/lte/cc_worker.cc) and are called throughout the repository to collect all possible instances of these data. Generated files are stored in the `probes/` directory and named based on collected data.
 
-  4. How I "solved" this issue
-      - Commented out CRC in `/lib/src/phy/phch/pssch.c`:`srsran_pssch_decode`:465 and `/lib/src/phy/phch/pssch.c`:`srsran_pssch_decode`:487
-      - Now, `pssch_ue` will generate PCAPs in tmp/pssch.pcap, but this is garbage
+Lines in output files consist of a unix timestamp followed by values fo either IQ data or the resource block allocation array. An example output can be found [here](https://raw.githubusercontent.com/C-V2X-Senior-Design/modSrsRAN/master/probes/rbgmask_values.txt)
 
 
-#### Issue No.3
-(Cross-documented in [`cv2x-traffic-generator`](https://github.com/C-V2X-Senior-Design/cv2x-traffic-generator) fork [changelog](#issue-no3))
-        
-  - This is not an issue, but rather an explanation for why we do not need to account for the non-adjacent C-V2X subchannelization scheme, just the adjacent scheme. Refer to Fabian Eckermann's paper SDR-based Open-Source C-V2X Traffic Generator for Stress Testing Vehicular Communication for explanation of C-V2X subchannelization schemes.
+#### Outputting IQ data
+```
+int output_probe(string text, string file_name){
+  fstream outfile;
+  string file_path;
+  
+  file_path = "/home/dragon/Code/modSrsRAN/probes/";
+  file_path.append(file_name);
+  outfile.open(file_path, ios_base::app);
+  if (outfile.is_open())
+    outfile << time(0) << ": " << text << endl;
+  else
+    cout << "Could Not Print " << endl;
+  return 0;
+}
+```
+
+Parameters:
+* `text`: the value to print; can me a file name for data organization or I/Q data
+* `file_name`: the file to append data to
+
+
+#### Outputting Resource Block Allocation Data
+```
+int probe_rbg_mask(srsenb::rbgmask_t mask, string file_name){
+  fstream outfile;
+  string file_path;
+  string s;
+  
+  s.assign(mask.size(), '0');
+  file_path = "/home/dragon/Code/modSrsRAN/probes/";
+  file_path.append(file_name);
+  outfile.open(file_path, ios_base::app);
+  if (outfile.is_open()){
+    outfile << time(0) << ": ";
+    outfile << "size: " << mask.size() << ", ";
+    for (size_t i = mask.size(); i > 0; --i) {
+      outfile << (mask.test(i - 1) ? '1' : '0');
+    }
+    outfile << endl;
+  }
+  else
+    cout << "Could Not Print " << endl;
+  return 0;
+}
+```
+
+Parameters:
+* `mask`: an `rbg_mask_t` type varaible native to SrsRAN; tracks resource block group data
+* `file_name`: the file to append data to
+
+
+### Execution
+
+Data collection is automatic and files are appended to, meaning that data files have the potential to grow in size without bound. This makes executing communication using native commands `srsenb` and `srsue` ill-advised.
+
+The alternative is to use the `main_hw_loop.sh` script, which refreshes the `probes/` directory and runs communications for a configurable duration. The full script may be found [here](https://github.com/C-V2X-Senior-Design/modSrsRAN/blob/master/main_hw_loop.sh).
+
+Execute this script by running the following in the command line:
+```
+./main_hw_loop.sh $TIME
+```
+
+The TIME parameter is optional, and specifies the duration of execution in seconds. If left unspecified, the duration defaults to 5 seconds.
 
 <br/>
 <p align="center">(<a href="#navigation">to table of contents</a>)</p>
