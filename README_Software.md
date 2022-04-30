@@ -300,6 +300,23 @@ The srsRAN release 21.10 implementation of pssch_ue.c (found in `modSrsRan/build
 
  
 #### Issue No.2
+No packets were passing the `srsran_pssch_decode()` in `pssch_ue.c`, i.e. `num_decoded_tb` always equaled 0, and therefore no PCAPs were generated.
+
+  1. Problemtatic filename:function:linenum
+      - `/lib/src/phy/phch/pssch.c:srsran_pssch_decode`:465
+      - `/lib/src/phy/phch/pssch.c:srsran_pssch_decode`:487
+
+  2. The Issue
+      - It is not passing the checksum, i.e. `srsran_bit_diff()`, which essentially checks that every bit is the same and as a result an error is returned to `pssch_ue` indicating the packet cannot be decoded.
+      
+  3. How to recreate the error and debug it
+      - Add `ERROR("Checksum error")` error printing statements to those two places
+      - Run `pssch_ue.c`. You should now see`Checksum error` error messages printed to the console
+
+  4. How I "solved" this issue
+      - Commented out CRC in `/lib/src/phy/phch/pssch.c`:`srsran_pssch_decode`:465 and `/lib/src/phy/phch/pssch.c`:`srsran_pssch_decode`:487
+      - Now, `pssch_ue` will generate PCAPs in tmp/pssch.pcap, but this is garbage
+
 
 #### Issue No.3
 
